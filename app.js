@@ -10,6 +10,9 @@ const outputPath = path.join(OUTPUT_DIR, 'team.html');
 
 const render = require('./lib/htmlRenderer');
 
+const employeeList = [];
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -26,12 +29,12 @@ const managerQuestions = [
     {
         type: "input",
         name: "name",
-        message: "What is their name?"  
+        message: "What is the manager's name?"  
     },
     {
         type: "input",
         name: "id",
-        message: "What is their id?"  
+        message: "What is the manager's id?"  
     },
     {
         type: "input",
@@ -46,11 +49,62 @@ const managerQuestions = [
 
 ]
 
+const engineerQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is the engineer's name?"  
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is the engineer's id?"  
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is their email?"  
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What is their github username?"  
+    },
+
+]
+
+const internQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is the intern's name?"  
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is the intern's id?"  
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is their email?"  
+    },
+    {
+        type: "input",
+        name: "school",
+        message: "What is their school?"  
+    },
+
+]
+
 const init = () => {
     inquirer.prompt(managerQuestions).then(function (answers) {
         console.log(answers);
         
         const newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        employeeList.push(newManager);
+        console.log(employeeList);
+        chooseMember();
     })
 };
 
@@ -77,20 +131,29 @@ const chooseMember = () => {
 }
 
 const addEngineer = () => {
-    console.log("adding Engineer")
-    //ask questions and then add engineer, push new employee to array for render
-    chooseMember();
+    inquirer.prompt(engineerQuestions).then(function (answers) {
+        const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+        employeeList.push(newEngineer);
+        console.log(employeeList);
+        chooseMember();
+    })
 }
 
 const addIntern = () => {
-    console.log("adding Intern")
-    //ask questions and then add intern, push new employee to array for render
-    chooseMember();
+    inquirer.prompt(internQuestions).then(function (answers) {
+        const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school)
+        employeeList.push(newIntern)
+        console.log(employeeList);
+        chooseMember();
+    })
+        
 }
 
 const quitAndPrint = () => {
     console.log("Quit and Print")
     //quit questions and start render
+
+
 }
 
 // After the user has input all employees desired, call the `render` function (required
