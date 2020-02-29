@@ -150,9 +150,16 @@ const addIntern = () => {
 }
 
 const quitAndPrint = () => {
-    console.log("Quit and Print")
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        // console.log("No output directory")
+        (fs.mkdirSync(OUTPUT_DIR));
+    } 
+    fs.writeFileSync(outputPath, render(employeeList))
+    // err => {
+    //     if (err) console.log(err) 
+    // })
+    // console.log("Quit and Print")
     //quit questions and start render
-
 
 }
 
