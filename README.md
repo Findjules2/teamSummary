@@ -27,9 +27,6 @@ The project must generate a `team.html` page in the `output` directory, that dis
 
 
 
-* The URL of the deployed application:
-https://findjules2.github.io/teamSummary/
-
 * The URL of the GitHub repository:
 https://github.com/Findjules2/teamSummary
 
